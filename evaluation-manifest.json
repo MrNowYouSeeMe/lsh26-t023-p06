@@ -46,8 +46,8 @@
       ]
     },
     {
-      "registered_name": "Teammate",
-      "github_username": "teammate",
+      "registered_name": "Al Fardin",
+      "github_username": "al-fardin",
       "major_contribution": "Codebase debugging, test case verification, calculation edge-case QA, and live deployment validation.",
       "evidence_paths_or_commits": [
         "src/lib/reportEngine.test.ts",

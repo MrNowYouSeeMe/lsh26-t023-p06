@@ -128,7 +128,7 @@ The team approached P06 by isolating business logic into a pure, deterministic c
 
 ### Registered Member Contributions
 - **Arijit Paul** (`arijit547`): End-to-end architecture, report calculation engine, feature implementation, and comparison chart visualization.
-- **Teammate**: Codebase debugging, test case verification, calculation edge-case QA, and live deployment validation.
+- **Al Fardin** (`al-fardin`): Codebase debugging, test case verification, calculation edge-case QA, and live deployment validation.
 
 ## Major Design Decisions
 
