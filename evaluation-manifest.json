@@ -3,7 +3,7 @@
   "team_id": "LSH26-T023",
   "problem_id": "P06",
   "repository_name": "lsh26-t023-p06",
-  "live_url": "",
+  "live_url": "https://storied-malabi-cb55e5.netlify.app",
   "demo_video_url_optional": "public/charts_walkthrough.webp",
   "event_start_code": "LSH26-8490-C900",
   "repository_created_before_release": false,
@@ -44,6 +44,16 @@
         "src/components/ComparisonChart.tsx",
         "src/App.tsx"
       ]
+    },
+    {
+      "registered_name": "Teammate",
+      "github_username": "teammate",
+      "major_contribution": "Codebase debugging, test case verification, calculation edge-case QA, and live deployment validation.",
+      "evidence_paths_or_commits": [
+        "src/lib/reportEngine.test.ts",
+        "src/components/AlertConfig.tsx",
+        "src/components/BatchView.tsx"
+      ]
     }
   ],
   "major_design_decisions": [
@@ -59,9 +69,14 @@
   ],
   "ai_tools_used": [
     {
+      "tool": "Cursor IDE",
+      "used_for": "Initial codebase scaffolding, basic project build, and component layout development",
+      "how_output_was_verified": "Manual code inspection, TypeScript type-checking, and browser preview validation."
+    },
+    {
       "tool": "Antigravity IDE (Gemini 2.5 Pro)",
-      "used_for": "Code scaffolding, automated browser testing, linting remediation, test generation, and responsive CSS styling",
-      "how_output_was_verified": "Automated unit test execution (node --test passing 11/11 tests), oxlint linting (0 errors), build verification, and live browser interaction testing."
+      "used_for": "Code optimization, edge-case test suite generation, automated browser testing, oxlint linting remediation, and responsive CSS styling",
+      "how_output_was_verified": "Automated unit test execution (node --test passing 11/11 tests), oxlint linting (0 errors), build compilation (tsc -b && vite build), and live browser interaction testing."
     }
   ],
   "licenses_file": "LICENSES.md",

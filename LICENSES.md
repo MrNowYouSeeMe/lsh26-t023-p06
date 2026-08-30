@@ -21,6 +21,7 @@ List material frameworks, libraries, starters, templates, UI kits, fonts, icons 
 
 List each AI tool in `evaluation-manifest.json`, what it was used for and how the output was verified. Write `None` if no AI tool was used.
 
+- **Cursor IDE**: Used for initial codebase scaffolding, basic project build, and component layout development. Verified through manual inspection, TypeScript type-checking, and browser preview.
 - **Antigravity IDE (Gemini 2.5 Pro)**: Used for architecture review, boilerplate scaffolding, automated browser testing, oxlint linting remediation, calculation edge-case test generation, and responsive CSS styling. All outputs were verified via automated unit test execution (`node --test`), automated static linting (`oxlint`), build compilation (`tsc -b && vite build`), and live browser interaction testing.
 
 ## Original-work statement

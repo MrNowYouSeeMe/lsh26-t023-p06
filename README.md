@@ -4,10 +4,8 @@ A high-performance web app that auto-generates monthly marketing performance rep
 
 ## Live URL
 
-_(Deploy the `dist/` folder to Vercel/Netlify/Cloudflare Pages and insert your deployed URL here before final submission)_
-
+- **Production URL**: [https://storied-malabi-cb55e5.netlify.app](https://storied-malabi-cb55e5.netlify.app)
 - **Local Preview**: `npm run build && npm run preview` at `http://localhost:4173`
-- **Deploy Command**: `npx vercel --prod` or drag-and-drop `dist/` to Netlify
 
 ## Demo Video
 
@@ -129,7 +127,8 @@ npm run lint
 The team approached P06 by isolating business logic into a pure, deterministic calculation engine covering edge cases (zero baseline, small numbers <1, negative deltas) protected by automated unit tests, accompanied by an accessible dark-mode UI, interactive comparison charts, and localStorage-persisted executive briefings scoped by dataset.
 
 ### Registered Member Contributions
-- **Arijit Paul** (`arijit547`): End-to-end architecture, report calculation engine, automated edge-case test suite, UI components, and chart visualization.
+- **Arijit Paul** (`arijit547`): End-to-end architecture, report calculation engine, feature implementation, and comparison chart visualization.
+- **Teammate**: Codebase debugging, test case verification, calculation edge-case QA, and live deployment validation.
 
 ## Major Design Decisions
 
