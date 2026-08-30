@@ -27,6 +27,37 @@ _(Deploy the `dist/` folder to Vercel/Netlify/Cloudflare Pages and insert your d
 - **Client Branding & Print Mode** — Dedicated print stylesheet with per-client brand color palettes and monogram logos.
 - **Benchmark Comparison** — Toggle comparison mode to evaluate individual client measures against the dataset-wide mean.
 
+## System Architecture
+
+```mermaid
+graph TD
+    subgraph Data Layer
+        Mock["dataGenerator.ts<br/>Procedural 8-Client Mock"] --> Ingestion["App.tsx<br/>Data Ingestion & Selection"]
+        Fixtures["fixtures.json<br/>25 Official P06 Test Cases"] --> Ingestion
+    end
+
+    subgraph Core Engine ["Core Calculation Engine (lib/reportEngine.ts)"]
+        Ingestion --> Engine["buildAllReports"]
+        Engine --> Calc["calcChange<br/>• Zero baseline handling<br/>• Small numbers &lt; 1 delta<br/>• Negative change calculation"]
+        Engine --> Movers["getTopMovers<br/>Ranks top 2 by magnitude"]
+        Engine --> Alerts["checkAlerts<br/>Threshold breaching"]
+        Engine --> Benchmark["computeAverages<br/>Agency-wide mean"]
+        Engine --> Summary["generateSummary<br/>Dynamic executive narrative"]
+    end
+
+    subgraph Persistence & State
+        Ingestion --> Hook["useEditedSummaries.ts<br/>localStorage Scoped by datasetKey::clientId"]
+    end
+
+    subgraph Presentation Layer
+        Engine --> Batch["BatchView.tsx<br/>Multi-client overview & alerts"]
+        Engine --> Single["ClientReportCard.tsx<br/>Individual executive digest"]
+        Single --> Table["MeasuresTable.tsx<br/>Performance & benchmark table"]
+        Single --> Print["PrintReport.tsx<br/>Print-optimized brand report"]
+        Ingestion --> Sidebar["AlertConfig.tsx<br/>Rule builder & threshold config"]
+    end
+```
+
 ## How to Run
 
 ```bash
