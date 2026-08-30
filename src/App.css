@@ -1419,6 +1419,446 @@ input:focus, select:focus, textarea:focus {
   opacity: 0.9;
 }
 
+/* ==========================================================================
+   Interactive Comparison Charts (Client & Batch Views)
+   ========================================================================== */
+
+/* Client Single Comparison Chart */
+.chart-comparison-section {
+  margin-bottom: 2.25rem;
+}
+
+.comparison-chart-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s ease;
+}
+
+.comparison-chart-card:hover {
+  border-color: var(--border-strong);
+}
+
+.chart-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.chart-icon-box {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  background: var(--primary-glow);
+  color: var(--primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.chart-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.chart-title-wrap h4 {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.1rem;
+}
+
+.chart-subtitle {
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+
+.chart-mode-toggles {
+  display: flex;
+  background: var(--surface-card);
+  padding: 0.2rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  gap: 0.2rem;
+}
+
+.btn-chart-toggle {
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 4px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-chart-toggle:hover {
+  color: var(--text);
+}
+
+.btn-chart-toggle.active {
+  background: var(--primary-gradient);
+  color: white;
+  box-shadow: 0 2px 8px var(--primary-glow);
+}
+
+.chart-legend {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.76rem;
+  color: var(--muted);
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.swatch-prev {
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.swatch-avg {
+  background: var(--warning);
+  opacity: 0.85;
+}
+
+.chart-bars-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.chart-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.6rem 0.8rem;
+  background: rgba(255, 255, 255, 0.015);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  transition: background 0.15s ease;
+}
+
+.chart-row:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.chart-row-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chart-measure-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.chart-diff-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+}
+
+.chart-diff-badge.dir-up,
+.chart-diff-badge.above-avg {
+  background: var(--success-bg);
+  color: var(--success);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.chart-diff-badge.dir-down,
+.chart-diff-badge.below-avg {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border: 1px solid rgba(244, 63, 94, 0.3);
+}
+
+.chart-diff-badge.dir-flat {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--muted);
+}
+
+.chart-track-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.chart-bar-lane {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.lane-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  text-align: right;
+}
+
+.lane-tag.current-tag,
+.lane-tag.client-tag {
+  color: var(--primary-light);
+}
+
+.bar-track {
+  height: 22px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.bar-fill {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 0.5rem;
+  border-radius: 5px;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  min-width: 32px;
+}
+
+.bar-fill-prev {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.bar-fill-avg {
+  background: linear-gradient(90deg, rgba(245, 158, 11, 0.6) 0%, rgba(245, 158, 11, 0.9) 100%);
+}
+
+.bar-label-inner {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  white-space: nowrap;
+}
+
+/* Batch Cross-Client Comparison Chart */
+.batch-comparison-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  margin-bottom: 2.25rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.batch-chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.batch-metric-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.selector-label {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.select-metric {
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.batch-chart-summary-bar {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0.65rem 1rem;
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.summary-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+}
+
+.summary-stat .stat-label {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.summary-stat .stat-value {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--text);
+}
+
+.text-success {
+  color: var(--success);
+}
+
+.batch-bars-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.batch-bar-row {
+  display: grid;
+  grid-template-columns: 140px 1fr 120px;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.45rem 0.6rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.batch-bar-row:hover {
+  background: var(--surface-hover);
+  border-color: var(--border-strong);
+  transform: translateX(2px);
+}
+
+.bar-client-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow: hidden;
+}
+
+.bar-client-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.bar-client-name {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bar-interactive-track {
+  height: 24px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.bar-progress-fill {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 0.6rem;
+  border-radius: 5px;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  min-width: 36px;
+}
+
+.bar-val-text {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.bar-variance-badge {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.badge-pill {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.badge-pill.above {
+  background: var(--success-bg);
+  color: var(--success);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.badge-pill.below {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border: 1px solid rgba(244, 63, 94, 0.3);
+}
+
+.batch-chart-footer-note {
+  font-size: 0.74rem;
+  color: var(--muted);
+  margin-top: 1rem;
+  text-align: right;
+}
+
 /* Full Measures Table */
 .all-measures-section, .benchmark-section {
   margin-bottom: 2.25rem;
@@ -1802,6 +2242,43 @@ input:focus, select:focus, textarea:focus {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.6rem;
+  }
+
+  .chart-card-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .chart-mode-toggles {
+    width: 100%;
+  }
+
+  .btn-chart-toggle {
+    flex: 1;
+    text-align: center;
+  }
+
+  .batch-chart-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .batch-metric-selector {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .select-metric {
+    flex: 1;
+  }
+
+  .batch-bar-row {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+
+  .bar-variance-badge {
+    justify-content: flex-start;
   }
 
   .table-wrap {

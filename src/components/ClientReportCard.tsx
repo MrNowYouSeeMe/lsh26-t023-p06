@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { ClientReport } from '../types';
 import { getClientBrand } from '../lib/branding';
+import { ComparisonChart } from './ComparisonChart';
 import { MeasuresTable } from './MeasuresTable';
 
 interface Props {
@@ -188,6 +189,17 @@ export function ClientReportCard({
             </div>
           ))}
         </div>
+      </section>
+
+      <section className="chart-comparison-section">
+        <ComparisonChart
+          changes={report.changes}
+          vsAverage={showVsAverage ? report.vsAverage : undefined}
+          currentMonth={currentMonth}
+          previousMonth={previousMonth}
+          clientName={report.client.name}
+          brandColor={brand.accent}
+        />
       </section>
 
       <section className="all-measures-section">

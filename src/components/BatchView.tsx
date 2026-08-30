@@ -1,5 +1,6 @@
 import type { AlertRule, ClientReport } from '../types';
 import { getClientBrand } from '../lib/branding';
+import { BatchComparisonChart } from './BatchComparisonChart';
 
 interface Props {
   reports: ClientReport[];
@@ -55,6 +56,13 @@ export function BatchView({ reports, currentMonth, previousMonth, getSummary, on
           </div>
         </div>
       </div>
+
+      <BatchComparisonChart
+        reports={reports}
+        currentMonth={currentMonth}
+        previousMonth={previousMonth}
+        onSelectClient={onSelectClient}
+      />
 
       {alertClients.length > 0 && (
         <section className="batch-section">
