@@ -11,7 +11,9 @@ _(Deploy the `dist/` folder to Vercel/Netlify/Cloudflare Pages and insert your d
 
 ## Demo Video
 
-- **Walkthrough Asset**: See [demo_walkthrough.webp](public/demo_walkthrough.webp) for an automated visual tour of all 4 MVP features, fixture switching, and mobile responsiveness.
+- **Walkthrough Assets**:
+  - [demo_walkthrough.webp](public/demo_walkthrough.webp): Full flow recording covering all 4 MVP features, fixture switching, and mobile layout.
+  - [charts_walkthrough.webp](public/charts_walkthrough.webp): Interactive demonstration of Cross-Client Benchmark Chart and Per-Client Visual Comparison Chart.
 - **Submission Video**: Ensure your 60-second walkthrough video is linked or committed as `demo.mp4` prior to final submission.
 
 ## What It Does
@@ -26,6 +28,7 @@ _(Deploy the `dist/` folder to Vercel/Netlify/Cloudflare Pages and insert your d
 - **Persisted Summary Edits** — Edit executive summaries with changes scoped and saved per dataset (`localStorage`), preventing cross-fixture leakage.
 - **Client Branding & Print Mode** — Dedicated print stylesheet with per-client brand color palettes and monogram logos.
 - **Benchmark Comparison** — Toggle comparison mode to evaluate individual client measures against the dataset-wide mean.
+- **Interactive Comparison Charts** — Cross-client metric benchmark bar chart with dynamic metric switcher, plus dual-mode per-client performance and agency-average visual comparison bars.
 
 ## System Architecture
 
@@ -51,7 +54,9 @@ graph TD
 
     subgraph Presentation Layer
         Engine --> Batch["BatchView.tsx<br/>Multi-client overview & alerts"]
+        Batch --> BatchChart["BatchComparisonChart.tsx<br/>Cross-client benchmark chart"]
         Engine --> Single["ClientReportCard.tsx<br/>Individual executive digest"]
+        Single --> Chart["ComparisonChart.tsx<br/>Per-client visual comparison"]
         Single --> Table["MeasuresTable.tsx<br/>Performance & benchmark table"]
         Single --> Print["PrintReport.tsx<br/>Print-optimized brand report"]
         Ingestion --> Sidebar["AlertConfig.tsx<br/>Rule builder & threshold config"]
