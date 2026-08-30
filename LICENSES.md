@@ -1,11 +1,9 @@
-# Third-Party Licenses
+# Third-Party Material and AI Disclosure
 
-All dependencies use strictly permissive (MIT / Apache-2.0 / BSD / ISC / OFL-compatible) licenses. No copyleft (GPL, AGPL, LGPL, MPL, SSPL) libraries are included.
+List material frameworks, libraries, starters, templates, UI kits, fonts, icons and assets used in this repository.
 
-## NPM Dependencies
-
-| Package | Version Range | License | Purpose |
-|---------|---------------|---------|---------|
+| Name | Version or source URL | Licence | Used for |
+|---|---|---|---|
 | react | ^19.2.8 | MIT | Core UI component framework |
 | react-dom | ^19.2.8 | MIT | React DOM renderer |
 | vite | ^7.3.6 | MIT | Fast frontend build tool and dev server |
@@ -15,19 +13,16 @@ All dependencies use strictly permissive (MIT / Apache-2.0 / BSD / ISC / OFL-com
 | @types/react | ^19.2.18 | MIT | React TypeScript type definitions |
 | @types/react-dom | ^19.2.4 | MIT | React DOM TypeScript type definitions |
 | @types/node | ^24.13.3 | MIT | Node.js environment type definitions |
+| Outfit Font | Google Fonts | SIL OFL 1.1 | Primary heading and display typography |
+| Plus Jakarta Sans Font | Google Fonts | SIL OFL 1.1 | Body text and UI data typography |
+| fixtures.json | LofiStack Hackathon 2026 | Event Material | Official P06 test fixtures |
 
-## Fonts (Google Fonts)
+## AI tools
 
-| Font | Foundry / Authors | License | Purpose |
-|------|-------------------|---------|---------|
-| Outfit | Rodrigo Fuenzalida, Omnibus-Type | SIL Open Font License 1.1 (OFL-1.1) | Primary heading and display typography |
-| Plus Jakarta Sans | Gumpita Rahayu, Tokotype | SIL Open Font License 1.1 (OFL-1.1) | Body text and UI data typography |
+List each AI tool in `evaluation-manifest.json`, what it was used for and how the output was verified. Write `None` if no AI tool was used.
 
-## Assets & Test Data
+- **Antigravity IDE (Gemini 2.5 Pro)**: Used for architecture review, boilerplate scaffolding, automated browser testing, oxlint linting remediation, calculation edge-case test generation, and responsive CSS styling. All outputs were verified via automated unit test execution (`node --test`), automated static linting (`oxlint`), build compilation (`tsc -b && vite build`), and live browser interaction testing.
 
-- **fixtures.json** — Official P06 hackathon test datasets provided by LofiStack (event materials).
-- **Client branding colors & initials** — Programmatically generated procedural palettes and monogram initials; no external copyrighted assets or trademarks.
+## Original-work statement
 
-## Scaffolding
-
-- Project initial scaffold configured with `create-vite` (MIT license).
+Everything not declared in this file or `EVENT.md` was created by the registered team during the event window.

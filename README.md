@@ -114,6 +114,38 @@ npm run lint
 - **Vanilla CSS** with CSS Custom Properties and dark aesthetic design system
 - See [LICENSES.md](LICENSES.md) for full licensing verification.
 
+## Requirement Proof
+
+| Requirement | Description | Status | Verification & Evidence |
+|---|---|---|---|
+| **R1** | 8 clients × 5–7 measures with two months of history (last vs current) | Complete | [dataGenerator.ts](src/lib/dataGenerator.ts), [fixtures.json](public/fixtures.json), [App.tsx](src/App.tsx) |
+| **R2** | Per-client reports: current numbers, MoM change, direction, top 2 movers | Complete | [ClientReportCard.tsx](src/components/ClientReportCard.tsx), [reportEngine.ts](src/lib/reportEngine.ts#L62-L80) |
+| **R3** | Dynamic natural language executive summary naming exact measures and changes | Complete | [reportEngine.ts:generateSummary](src/lib/reportEngine.ts#L104-L125), [ClientReportCard.tsx](src/components/ClientReportCard.tsx) |
+| **R4** | Batch view showing all client reports with configurable alert thresholds | Complete | [BatchView.tsx](src/components/BatchView.tsx), [AlertConfig.tsx](src/components/AlertConfig.tsx), [reportEngine.ts:checkAlerts](src/lib/reportEngine.ts#L82-L95) |
+
+## Problem-Solving Method & Member Contributions
+
+### Method Statement
+The team approached P06 by isolating business logic into a pure, deterministic calculation engine covering edge cases (zero baseline, small numbers <1, negative deltas) protected by automated unit tests, accompanied by an accessible dark-mode UI, interactive comparison charts, and localStorage-persisted executive briefings scoped by dataset.
+
+### Registered Member Contributions
+- **Arijit Paul** (`arijit547`): End-to-end architecture, report calculation engine, automated edge-case test suite, UI components, and chart visualization.
+
+## Major Design Decisions
+
+1. **Deterministic Calculation Core**: `src/lib/reportEngine.ts` is implemented with zero browser or React dependencies, allowing instant automated unit testing via `node --test`.
+2. **Strict Permissive Licensing**: Downgraded to Vite 7.3.6 and avoided external charting libraries to eliminate MPL-2.0 and copyleft dependencies.
+3. **Namespaced Storage Persistence**: Executive summary edits are stored in `localStorage` keyed by `${datasetKey}::${clientId}` to completely prevent cross-fixture data leakage.
+4. **Accessible Dual-Chart Visualization**: Custom SVG/CSS bar charts provide both cross-client metric benchmarking and per-client MoM/agency-average comparisons.
+
+## Known Limitations
+
+1. **Local Storage Only**: Summary edits persist in browser `localStorage`; multi-user cloud synchronization is not included.
+2. **Browser Print Export**: Export relies on the browser's native print engine styled via CSS `@media print`; direct server-side PDF generation is a future enhancement.
+
 ## Team
 
-LofiStack Hackathon 2026 — Problem P06 (Team ID: `LSH26-T023`)
+- **Team ID:** `LSH26-T023`
+- **Problem ID:** `P06`
+- **Repository:** `lsh26-t023-p06`
+
